@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>サンプル</title>
+<script src="https://unpkg.com/vue@3.0.0/dist/vue.global.js"></script>
+</head>
+<body>
+    <style>
+        .red{
+            font-size: 32pt;
+            font-weight: plain;
+            color:red;
+        }
+        .blue{
+            font-size: 24pt;
+            font-weight: bold;
+            color: blue;
+        }
+    </style>
+<h1 class="bg-primary text-white display-4 px-3">vue3</h1>
+<div id="app" class="bg-primary text-white display-4 px-3 container">
+<p v-if="temp != 0" class="blue">{{message}}</p>
+<p v-else class="red">カウントリセット</p>
+</div>
+<script>
+    const appdata = {
+        data() {
+            return {
+                message: null,
+                count: 0,
+                temp:1,
+                isBlue: true
+            }
+        },
+        mounted(){
+            this.message = 'カウントスタート'
+            this.ngmessage = 'カウントリセット'
+            setInterval(()=>{
+                this.count++
+                this.temp = this.count%10
+                this.message = this.temp +'秒経過'
+            },1000)
+        }
+    }
+    Vue.createApp(appdata).mount('#app')
+</script>
+</body>
+</html>
